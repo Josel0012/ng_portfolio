@@ -4,13 +4,13 @@
             <a href="#hero">JSL.Pega</a>
         </h1>
         <div>
-            <button *ngIf="!istoggle" id="mobile-open-button" class="text-3xl sm:hidden focus:outline-none"
+            <button *ngIf="!istoggle" id="mobile-open-button" class="text-3xl sm:hidden focus:outline-none pt-1"
                 (click)="toggleMenu()">
-                &#9776;
+                <span class="iconify text-4xl" data-icon="cil:hamburger-menu"></span>
             </button>
-            <button *ngIf="istoggle" id="mobile-open-button" class="text-3xl sm:hidden focus:outline-none"
+            <button *ngIf="istoggle" id="mobile-open-button" class="text-3xl sm:hidden focus:outline-none pt-1"
                 (click)="toggleMenu()">
-                🗙
+                <span class="iconify text-4xl" data-icon="material-symbols:close"></span>
             </button>
 
             <nav aria-label="main">

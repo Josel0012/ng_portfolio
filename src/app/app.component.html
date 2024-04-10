@@ -1,13 +1,18 @@
-<div *ngIf="darkMode" class="fixed top-20 lg:top-6 z-50">
-    <button class="fixed text-white right-4 text-2xl" (click)="toggleDark()"><span class="iconify" data-icon="ph:moon-bold"></span></button>
-</div>
-<div *ngIf="!darkMode" class="fixed top-20 lg:top-6 z-50 ">
-    <button class="fixed text-slate-800 right-4 text-3xl" (click)="toggleDark()"><span class="iconify" data-icon="ph:sun"></span></button>
+<div *ngIf="loading" class="w-full min-h-screen dark:bg-slate-900 flex justify-center items-center">
+    <div  class="loader">
+    </div>
 </div>
 
-<app-navbar></app-navbar>
-<app-home></app-home>
-<app-about></app-about>
-<app-skills></app-skills>
-<app-projects></app-projects>
+<div *ngIf="!darkMode && !loading" class="fixed top-20 lg:top-4 z-50 ">
+    <button class="fixed text-white right-4 text-3xl bg-teal-400 p-2 rounded-full" (click)="toggleDark()"><span class="iconify" data-icon="ph:moon-bold"></span></button>
+</div>
+<div *ngIf="darkMode && !loading" class="fixed top-20 lg:top-4 z-50 ">
+    <button class="fixed text-slate-800 right-4 text-3xl  bg-teal-400 p-2 rounded-full" (click)="toggleDark()"><span class="iconify" data-icon="ph:sun"></span></button>
+</div>
+
+<app-navbar *ngIf="!loading"></app-navbar>
+<app-home *ngIf="!loading"></app-home>
+<app-about *ngIf="!loading"></app-about>
+<app-skills *ngIf="!loading"></app-skills>
+<app-projects *ngIf="!loading"></app-projects>
 <router-outlet></router-outlet>
