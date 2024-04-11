@@ -1,0 +1,59 @@
+<section id="contacts" class="items-center text-slate-900 dark:bg-slate-900">
+    <div class="max-w-5xl p-4 mx-auto dark:text-slate-300">
+        <div class="w-full mx-auto text-center mb-2">
+            <h2 class="text-center text-4xl font-bold">CONTACT ME</h2>
+            <div class="bg-teal-300 h-1.5 w-24 mx-auto mt-2"></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 p-10 bg-gray-500 bg-opacity-15 mt-4 rounded-md dark:bg-transparent">
+            <div class="col-span-1">
+                <div class="mb-5">
+                    <h3 class="flex items-center text-xl dark:text-teal-300 font-semibold"><span class="iconify mr-3"
+                            data-icon="carbon:location-filled"></span>Address:</h3>
+                    <span>122 Santa Teresa Alfonso Cavite</span>
+                </div>
+
+                <div class="mb-5">
+                    <h3 class="flex items-center text-xl dark:text-teal-300 font-semibold"><span class="iconify mr-3"
+                            data-icon="bi:envelope-fill"></span>Email: </h3>
+                    <span>jslpega@gmail.com</span>
+                </div>
+                <div class="mb-5">
+                    <h3 class="flex items-center text-xl dark:text-teal-300 font-semibold"><span class="iconify mr-3"
+                            data-icon="bxs:phone"></span>Phone</h3>
+                    <span>0994-379-8166</span>
+                </div>
+            </div>
+            <div class="col-span-2">
+                <div>
+                    <form [formGroup]="emailForm">
+                        <div class="md:px-4">
+                            <div class="grid grid-cols-2 gap-4 mb-5">
+                                <input class="rounded-full border-teal-300 border-2 w-full h-9 place px-4 text-slate-700"
+                                    placeholder="Your Name" type="text" formControlName="name">
+                                <input class="rounded-full border-teal-300 border-2 w-full px-4 text-slate-700" placeholder="Email"
+                                    type="email" formControlName="email">
+                            </div>
+
+                            <div class="mb-5">
+                                <input class="rounded-full border-teal-300 border-2 w-full h-9 px-4 text-slate-700"
+                                    placeholder="Subject" type="text" formControlName="subject">
+                            </div>
+
+                            <div class="mb-5">
+                                <textarea class="rounded-3xl border-teal-300 border-2 w-full h-28 px-4 text-slate-700" name="" id=""
+                                    cols="30" rows="10" placeholder="Message" formControlName="message"></textarea>
+                            </div>
+
+                            <div class="w-full flex justify-center">
+                                <button class="bg-teal-300 text-slate-900 py-2 px-5 rounded-2xl font-semibold" (click)="showValue()">Send
+                                    Message</button>
+                            </div>
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

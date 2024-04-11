@@ -1,45 +1,78 @@
-<header class="sticky top-0 z-30 text-slate-800 dark:text-slate-300 dark:bg-slate-900">
-    <section class="max-w-4xl mx-auto p-4 flex justify-between  items-center">
-        <h1 class="text-3xl font-bold">
-            <a href="#hero">JSL.Pega</a>
-        </h1>
-        <div>
-            <button *ngIf="!istoggle" id="mobile-open-button" class="text-3xl sm:hidden focus:outline-none pt-1"
-                (click)="toggleMenu()">
-                <span class="iconify text-4xl" data-icon="cil:hamburger-menu"></span>
-            </button>
-            <button *ngIf="istoggle" id="mobile-open-button" class="text-3xl sm:hidden focus:outline-none pt-1"
-                (click)="toggleMenu()">
-                <span class="iconify text-4xl" data-icon="material-symbols:close"></span>
-            </button>
+<header id="navbar" class="sticky top-0 z-30 text-slate-800 bg-slate-50 dark:text-slate-300 dark:bg-slate-900 px-4">
+    <section class="max-w-5xl mx-auto p-4 grid grid-cols-12">
+        <div class="text-3xl font-bold flex items-center col-span-4 order-1">
+            JSL.Pega
+        </div>
+
+
+        <div class="flex justify-center items-center col-span-1 md:col-span-7 order-3 md:order-2">
+            <div class="flex items-center">
+                <button *ngIf="!istoggle" id="mobile-open-button" class="text-3xl md:hidden focus:outline-none"
+                    (click)="toggleMenu()">
+                    <span class="iconify text-4xl" data-icon="cil:hamburger-menu"></span>
+                </button>
+                <button *ngIf="istoggle" id="mobile-open-button" class="text-3xl md:hidden focus:outline-none"
+                    (click)="toggleMenu()">
+                    <span class="iconify text-4xl" data-icon="material-symbols:close"></span>
+                </button>
+            </div>
 
             <nav aria-label="main">
-                <ul class="hidden list-inside space-x-8 text-base sm:flex">
-                    <span></span>
-                    <li class="cursor-pointer  py-1 border-b-0 hover:border-b-2 border-teal-300" (click)="toHome()"><a
-                            class="hover:opacity-90 ">HOME</a></li>
-                    <li class="cursor-pointer py-1 hover:border-b-2 border-teal-300" (click)="toAbout()"><a
-                            class="hover:opacity-90">ABOUT</a></li>
-                    <li class="cursor-pointer py-1 hover:border-b-2 border-teal-300" (click)="toSkills()"><a
-                            class="hover:opacity-90">SKILLS</a></li>
-                    <li class="cursor-pointer py-1 hover:border-b-2 border-teal-300" (click)="toProjects()"><a
-                            class="hover:opacity-90">PROJECTS</a></li>
-                    <li class="cursor-pointer py-1 hover:border-b-2 border-teal-300" (click)="toContact()"><a
+                <ul id="menu-option" class="hidden list-inside space-x-8 text-base md:flex">
+                    <li #home class="cursor-pointer  py-1 border-b-0 hover:border-b-2 border-teal-300"
+                        (click)="setActive(home,'home')"><a class="hover:opacity-90 ">HOME</a></li>
+                    <li #about class="cursor-pointer py-1 hover:border-b-2 border-teal-300"
+                        (click)="setActive(about,'about')"><a class="hover:opacity-90">ABOUT</a></li>
+                    <li #skills class="cursor-pointer py-1 hover:border-b-2 border-teal-300"
+                        (click)="setActive(skills,'skills')"><a class="hover:opacity-90">SKILLS</a></li>
+                    <li #experiences class="cursor-pointer py-1 hover:border-b-2 border-teal-300"
+                        (click)="setActive(experiences,'experiences')"><a class="hover:opacity-90">EXPERIENCE</a></li>
+                    <li #projects class="cursor-pointer py-1 hover:border-b-2 border-teal-300"
+                        (click)="setActive(projects,'projects')"><a class="hover:opacity-90">PROJECTS</a></li>
+                    <li #contacts class="cursor-pointer py-1 hover:border-b-2 border-teal-300" (click)="setActive(contacts,'contacts')"><a
                             class="hover:opacity-90">CONTACT</a></li>
                 </ul>
             </nav>
         </div>
+
+        <div class="col-span-7 md:col-span-1 flex justify-end items-center order-2 md:order-3 px-3">
+            <div *ngIf="!darkMode" class="flex items-center">
+                <button class="text-2xl" (click)="toggleDark()"><span class="iconify"
+                        data-icon="ph:moon-bold"></span></button>
+            </div>
+            <div *ngIf="darkMode" class="flex items-center">
+                <button class="text-2xl" (click)="toggleDark()"><span class="iconify"
+                        data-icon="ph:sun-bold"></span></button>
+            </div>
+        </div>
+
+
     </section>
     <nav [ngClass]="istoggle ? 'origin-top animate-open-menu' : 'hidden'"
-        class="bg-teal-50 flex justify-between items-center sm:hidden transition ease-out duration-300 min-h-[calc(100vh-68px)] w-full absolute top-o dark:bg-slate-800"
+        class="fixed bg-teal-50 flex justify-between items-center md:hidden transition ease-out duration-300 min-h-[calc(100vh-68px)] right-0 w-full dark:bg-slate-800"
         aria-label="msin2" (click)="closeMenu()">
-        <ul class="w-full list-inside  space-x-8 text-5xl">
-            <span></span>
-            <li class="text-center mb-7"><a href="#home" class="hover:opacity-90">Home</a></li>
-            <li class="text-center mb-7"><a href="#about" class="hover:opacity-90">About</a></li>
-            <li class="text-center mb-7"><a href="#skills" class="hover:opacity-90">Skills</a></li>
-            <li class="text-center mb-7"><a href="#projects" class="hover:opacity-90">Projects</a></li>
-            <li class="text-center mb-7"><a href="#contact" class="hover:opacity-90">Contact</a></li>
+        <ul class="w-full text-2xl grid grid-cols-2 gap-3 p-4 justify-items-center">
+            <li #home class="text-center text-slate-800 bg-teal-400 w-full rounded-lg py-10"
+                (click)="setActive(home,'home')"><a class="hover:opacity-90 flex flex-col  items-center"><span
+                        class="iconify text-5xl" data-icon="ant-design:home-filled"></span>Home</a></li>
+            <li #about class="text-center text-slate-800 bg-teal-400 w-full rounded-lg py-10"
+                (click)="setActive(about,'about')"><a class="hover:opacity-90 flex flex-col  items-center"><span
+                        class="iconify text-5xl" data-icon="material-symbols:roundabout-left-sharp"></span>About</a>
+            </li>
+            <li #skills class="text-center text-slate-800 bg-teal-400 w-full rounded-lg py-10"
+                (click)="setActive(skills,'skills')"><a class="hover:opacity-90 flex flex-col  items-center"><span
+                        class="iconify text-5xl" data-icon="mdi:head-cog"></span>About</a></li>
+            <li #projects class="text-center text-slate-800 bg-teal-400 w-full rounded-lg py-10"
+                (click)="setActive(projects,'projects')"><a class="hover:opacity-90 flex flex-col  items-center"><span
+                        class="iconify text-5xl" data-icon="grommet-icons:projects"></span>Projects</a></li>
+            <li #experiences class="text-center text-slate-800 bg-teal-400 w-full rounded-lg py-10"
+                (click)="setActive(experiences,'experiences')"><a
+                    class="hover:opacity-90 flex flex-col  items-center"><span class="iconify text-5xl"
+                        data-icon="material-symbols:work"></span>Experience</a></li>
+            <li #contacts class="text-center text-slate-800 bg-teal-400 w-full rounded-lg py-10"
+                (click)="setActive(contacts,'contacts')"><a
+                    class="hover:opacity-90 flex flex-col  items-center"><span class="iconify text-5xl"
+                        data-icon="material-symbols:work"></span>Contact</a></li>
         </ul>
     </nav>
 

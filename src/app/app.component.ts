@@ -30,17 +30,14 @@ export class AppComponent {
         // Hide loader when navigation ends (page has finished loading)
         setTimeout(() =>{
           this.loading = false;
-        }, 3000);
+        }, 1);
       }
     });
 
     localStorage.setItem('theme', 'dark');
-    this;
-
     this.userTheme = localStorage.getItem('theme');
     this.systemTheme = window.matchMedia('(prefers-color-scheme:dark)').matches;
 
-    console.log(this.userTheme, this.systemTheme);
 
     this.themeCheck();
   }
