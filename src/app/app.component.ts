@@ -30,7 +30,7 @@ export class AppComponent {
         // Hide loader when navigation ends (page has finished loading)
         setTimeout(() =>{
           this.loading = false;
-        }, 1);
+        }, 3000);
       }
     });
 
