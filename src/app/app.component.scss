@@ -26,24 +26,6 @@
   animation-delay: 0.4s;
 }
 
-@keyframes rotate {
-  0% {
-    transform: translate(-50%, -50%) rotateZ(0deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotateZ(360deg);
-  }
-}
-
-@keyframes rotateccw {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(-360deg);
-  }
-}
-
 @keyframes spin {
   0%,
   100% {
