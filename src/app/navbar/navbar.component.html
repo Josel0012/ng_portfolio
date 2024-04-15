@@ -51,7 +51,7 @@
     <nav [ngClass]="istoggle ? 'origin-top animate-open-menu' : 'hidden'"
         class="fixed bg-teal-50 flex justify-between items-center md:hidden transition ease-out duration-300 min-h-[calc(100vh-68px)] right-0 w-full dark:bg-slate-800"
         aria-label="msin2" (click)="closeMenu()">
-        <ul class="w-full text-2xl grid grid-cols-2 gap-3 p-4 justify-items-center">
+        <ul id="menu-option2" class="w-full max-h-svh text-2xl grid grid-cols-2 gap-3 px-4 pb-20 justify-items-center overflow-y-auto ">
             <li #home class="text-center text-slate-800 bg-teal-400 w-full rounded-lg py-10"
                 (click)="setActive(home,'home')"><a class="hover:opacity-90 flex flex-col  items-center"><span
                         class="iconify text-5xl" data-icon="ant-design:home-filled"></span>Home</a></li>

@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 .active {
-  border-bottom: 2px solid #2dd4bf;
+  @apply border-b-4;
 }
 
 .loader {
@@ -33,6 +33,9 @@
   color: #ff3d00;
   transform: rotateY(70deg);
   animation-delay: 0.4s;
+}
+#menu-option2 ::-webkit-scrollbar{
+  width: 1px;
 }
 
 @keyframes spin {
