@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-declare var Email: any;
+import emailjs from 'emailjs-com';
 
 @Component({
   selector: 'app-contacts',
@@ -13,35 +13,43 @@ export class ContactsComponent {
   constructor(private fb: FormBuilder) {
     this.emailForm = this.fb.group({
       // Define your form controls here
-      name: ['',[Validators.required]],
+      name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      subject:['',[Validators.required]],
-      message: ['',[Validators.required]]
+      subject: ['', [Validators.required]],
+      message: ['', [Validators.required]],
     });
-
   }
-  
-  showValue():void{
-    if(!this.emailForm.valid){
+
+  showValue(): void {
+    if (!this.emailForm.valid) {
       console.log(this.emailForm);
-      alert("All fields required!");
+      alert('All fields required!');
       return;
     }
 
-    const email = {
-      Host: "smtp.elasticemail.com",
-      Username: "sfrankenstein734@gmail.com",
-      Password: "A3AE452BCCCA08A2789278E6A9E4F098BEA9",
-      To: "jslpega@gmail.com",
-      From: this.emailForm.value.email,
-      Subject: this.emailForm.value.subject,
-      Body: this.emailForm.value.name + "<br><b>Body: </b>:" + this.emailForm.value.message
+    const templateParams = {
+      from_name: this.emailForm.value.name,
+      from_email: this.emailForm.value.email,
+      subject: this.emailForm.value.subject,
+      message: this.emailForm.value.message,
     };
-    
-    Email.send(email).then((err:any)=>{
-      console.log(err);
-    }
-      
-    );
+
+    emailjs
+      .send(
+        'service_n1xw0ta',
+        'template_l199z09',
+        templateParams,
+        '6s7qHWlD5xDcYKif6'
+      )
+      .then(
+        () => {
+          alert('Message sent successfully!');
+          this.emailForm.reset();
+        },
+        (error) => {
+          console.error('EmailJS Error:', error);
+          alert('Failed to send message.');
+        }
+      );
   }
 }
