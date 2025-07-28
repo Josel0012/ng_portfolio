@@ -3,12 +3,15 @@
     </div>
 </div>
 
-<app-navbar *ngIf="!loading"></app-navbar>
-<app-home *ngIf="!loading"></app-home>
-<app-about *ngIf="!loading"></app-about>
-<app-skills *ngIf="!loading"></app-skills>
-<app-experiences *ngIf="!loading"></app-experiences>
-<app-projects *ngIf="!loading"></app-projects>
-<app-contacts *ngIf="!loading"></app-contacts>
-<app-footer *ngIf="!loading"></app-footer>
-<router-outlet></router-outlet>
+<!-- Main Content -->
+<ng-container *ngIf="!loading">
+    <app-navbar></app-navbar>
+    <app-home></app-home>
+    <app-about></app-about>
+    <app-skills></app-skills>
+    <app-experiences></app-experiences>
+    <app-projects></app-projects>
+    <app-contacts></app-contacts>
+    <app-footer></app-footer>
+    <router-outlet></router-outlet>
+</ng-container>
