@@ -1,4 +1,4 @@
-import { Component, ElementRef, Renderer2 } from '@angular/core';
+import { Component, ElementRef, HostListener, Renderer2 } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 
 @Component({
@@ -14,21 +14,44 @@ export class AppComponent {
   rootElement = document.documentElement;
   darkMode = true;
   loading: boolean = false;
+
+  private targetX = 0;
+  private targetY = 0;
+  private currentX = 0;
+  private currentY = 0;
   constructor(
     private renderer: Renderer2,
     private elementRef: ElementRef,
     private router: Router
-  ) {}
+  ) {
+    this.animateGlow();
+  }
+
+  @HostListener('document:mousemove', ['$event'])
+  onMouseMove(event: MouseEvent) {
+    this.targetX = event.clientX;
+    this.targetY = event.clientY;
+  }
+
+  animateGlow() {
+    const glow = document.querySelector('.glow') as HTMLElement;
+    if (glow) {
+      this.currentX += (this.targetX - this.currentX) * 0.1;
+      this.currentY += (this.targetY - this.currentY) * 0.1;
+      glow.style.left = this.currentX + 'px';
+      glow.style.top = this.currentY + 'px';
+    }
+    requestAnimationFrame(() => this.animateGlow());
+  }
 
   ngOnInit(): void {
-    this.router.events.subscribe(event => {
+    this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         // Show loader when navigation starts
         this.loading = true;
-
       } else if (event instanceof NavigationEnd) {
         // Hide loader when navigation ends (page has finished loading)
-        setTimeout(() =>{
+        setTimeout(() => {
           this.loading = false;
         }, 3000);
       }
@@ -37,7 +60,6 @@ export class AppComponent {
     localStorage.setItem('theme', 'dark');
     this.userTheme = localStorage.getItem('theme');
     this.systemTheme = window.matchMedia('(prefers-color-scheme:dark)').matches;
-
 
     this.themeCheck();
   }
